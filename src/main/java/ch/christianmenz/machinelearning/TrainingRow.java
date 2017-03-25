@@ -14,5 +14,15 @@ public class TrainingRow {
         this.input = input;
         this.output = output;
     }
+
+    public double[] getInput() {
+        return input;
+    }
+
+    public double[] getOutput() {
+        return output;
+    }
+    
+    
     
 }

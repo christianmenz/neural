@@ -26,7 +26,7 @@ public class NeuralNetworkTest {
      */
     @Test
     public void shouldTrainXOR() {
-        int epochs = 100;
+        int epochs = 1000000;
         NeuralNetwork net = new NeuralNetwork(2, 2, 1);
 
         TrainingSet trainingSet = new TrainingSet();
@@ -35,7 +35,7 @@ public class NeuralNetworkTest {
         trainingSet.addRow(new TrainingRow(new double[]{1, 0}, new double[]{1}));
         trainingSet.addRow(new TrainingRow(new double[]{0, 0}, new double[]{0}));
 
-        Trainer trainer = new Trainer(net, trainingSet, 0.25);
+        Trainer trainer = new Trainer(net, trainingSet, 0.1d);
 
         for (int i = 0; i < epochs; i++) {
             trainer.train();

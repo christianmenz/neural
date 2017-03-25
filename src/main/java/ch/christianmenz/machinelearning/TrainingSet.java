@@ -1,6 +1,7 @@
 package ch.christianmenz.machinelearning;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -8,7 +9,7 @@ import java.util.LinkedList;
  */
 public class TrainingSet {
 
-    private LinkedList<TrainingRow> trainingRows = new LinkedList<>();
+    private List<TrainingRow> trainingRows = new LinkedList<>();
 
     public TrainingSet() {
     }
@@ -16,5 +17,9 @@ public class TrainingSet {
     public void addRow(TrainingRow trainingRow) {
         trainingRows.add(trainingRow);
     }
+
+    public List<TrainingRow> getTrainingRows() {
+        return trainingRows;
+    }       
 
 }

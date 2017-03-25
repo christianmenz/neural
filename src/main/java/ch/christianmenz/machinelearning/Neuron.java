@@ -8,8 +8,6 @@ public class Neuron {
 
     private double bias;
 
-    private double weight;
-
     private double input;
 
     private double output;
@@ -49,7 +47,7 @@ public class Neuron {
         // sum up weights*inputs
         double sum = 0;
         for (int i = 0; i < inputs.length; i++) {
-            sum += inputs[i] * neurons[i].weight + bias;
+            sum += inputs[i] * inputWeights[i] + bias;
         }
 
         // transfer function (sigmoid)
@@ -61,6 +59,21 @@ public class Neuron {
             output = (1d / (1d + Math.exp(sum)));
         }
 
+    }
+
+    public double getBias() {
+        return bias;
+    }
+
+    public void setBias(double bias) {
+        this.bias = bias;
+    }
+    
+    
+    
+
+    public double[] getInputWeights() {
+        return inputWeights;
     }
 
     public double getOutput() {
