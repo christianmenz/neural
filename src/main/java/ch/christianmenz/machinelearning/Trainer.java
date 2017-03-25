@@ -33,18 +33,18 @@ public class Trainer {
                 epochError += Math.pow(error, 2); // square error
 
                 // backpropagate..
-                for (int layer = network.getNeurons().length - 1; layer > 0; layer--) {
+                for (int layer = network.getNeurons().length - 1; layer > 0; layer--) { 
                     for (int n = 0; n < network.getNeurons()[layer].length; n++) {
                         Neuron neuron = network.getNeurons()[layer][n];
-                        Neuron[] inputs = network.getNeurons()[layer - 1];
+                        Neuron[] inputNeurons = network.getNeurons()[layer - 1];
                         
-                        for (int z = 0; z < inputs.length; z++) {
-                            double changeWeight = learningRate * error * inputs[z].getOutput() * actualOut * (1 - actualOut);
-                            neuron.getInputWeights()[z] = neuron.getInputWeights()[z] + changeWeight; // I know how this feels.. but maybe the perormance is good
+                        for (int z = 0; z < inputNeurons.length; z++) {
+                            double changeWeight = learningRate * error * inputNeurons[z].getOutput() * neuron.getOutput() * (1.d - neuron.getOutput());
+                            neuron.getInputWeights()[z] = neuron.getInputWeights()[z] + changeWeight; // I know how this feels.. but maybe the perormance is good                            
                         }
                         // update bias
-                        double changeWeight = learningRate * error * 1d * actualOut * (1 - actualOut);
-                        neuron.setBias(neuron.getBias() + changeWeight);
+                        double changeWeight = learningRate * error * 1d * neuron.getOutput() * (1 - neuron.getOutput());
+                        neuron.setBias(neuron.getBias() + changeWeight);                        
                     }
                 }
                 

@@ -33,6 +33,12 @@ public class NeuralNetwork {
   
     double[] activate(double[] input) {
         this.input = input;
+        
+        // first layer output is fixed
+        for (int i = 0; i < input.length; i++) {
+            neurons[0][i].setOutput(input[i]);;
+        }
+        
         for (int layer = 1; layer < neurons.length; layer++) {           
             for (int n = 0; n < neurons[layer].length; n++) {
                 Neuron neuron = neurons[layer][n];                                

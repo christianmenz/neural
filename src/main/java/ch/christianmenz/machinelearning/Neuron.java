@@ -8,8 +8,6 @@ public class Neuron {
 
     private double bias;
 
-    private double input;
-
     private double output;
 
     private NeuralNetwork network;
@@ -33,22 +31,19 @@ public class Neuron {
 
     public void activate() {
         double[] inputs = null;
-        Neuron[] neurons = network.getNeurons()[layer - 1];
+        Neuron[] inputConnections = network.getNeurons()[layer - 1];
 
-        if (layer == 1) {
-            inputs = network.getInput();
-        } else {
-            inputs = new double[neurons.length]; // TODO: reuse array..
-            for (int i = 0; i < neurons.length; i++) {
-                inputs[i] = neurons[i].getOutput();
-            };
-        }
+        inputs = new double[inputConnections.length]; // TODO: reuse array..
+        for (int i = 0; i < inputConnections.length; i++) {
+            inputs[i] = inputConnections[i].getOutput();
+        };
 
         // sum up weights*inputs
         double sum = 0;
         for (int i = 0; i < inputs.length; i++) {
-            sum += inputs[i] * inputWeights[i] + bias;
+            sum += inputs[i] * inputWeights[i];
         }
+        sum += bias;
 
         // transfer function (sigmoid)
         if (sum > 100) {
@@ -68,9 +63,6 @@ public class Neuron {
     public void setBias(double bias) {
         this.bias = bias;
     }
-    
-    
-    
 
     public double[] getInputWeights() {
         return inputWeights;
@@ -78,6 +70,10 @@ public class Neuron {
 
     public double getOutput() {
         return output;
+    }
+
+    void setOutput(double output) {
+        this.output = output;
     }
 
 }
