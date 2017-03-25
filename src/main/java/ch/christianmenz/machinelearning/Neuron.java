@@ -1,7 +1,5 @@
 package ch.christianmenz.machinelearning;
 
-import java.util.Arrays;
-
 /**
  *
  * @author Christian
